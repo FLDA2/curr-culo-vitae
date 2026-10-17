@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum Vitae Autónomo</title>
+    
+    <!-- Configuração PWA direta para Android (Elimina a necessidade de APIs/Android Studio) -->
+    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJkZWZhdWx0X2xvY2FsZSI6ICJwdCIsCiAgIm5hbWUiOiAiQ3VycmljdWx1bSBWaXRhZSIsCiAgInNob3J0X25hbWUiOiAiQ1YiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2Y0ZjRmOSIsCiAgInRoZW1lX2NvbG9yI6ICIjMTZhMDg1Igp9">
+    
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; color: #333; background: #f4f4f9; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; margin-bottom: 5px; }
+        h2 { color: #16a085; border-bottom: 2px solid #ecf0f1; padding-bottom: 5px; margin-top: 30px; }
+        .info { margin-bottom: 20px; font-style: italic; }
+        
+        /* Painel de Exportação Superior */
+        .export-panel { background: #2c3e50; padding: 15px; border-radius: 6px; margin-bottom: 25px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .btn { background: #16a085; color: white; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 14px; transition: background 0.2s; }
+        .btn:hover { background: #148f77; }
+        .btn-orange { background: #e67e22; }
+        .btn-orange:hover { background: #d35400; }
+    </style>
+</head>
+<body>
+
+    <!-- Painel de Download Embutido -->
+    <div class="export-panel">
+        <button class="btn" onclick="descarregarGeradorWindows()">1) Download Script .BAT (Gerar .EXE para PC)</button>
+        <button class="btn btn-orange" onclick="instalarNoAndroid()">2) Instalar no Android (Sem APK/API)</button>
+    </div>
+
+    <!-- Conteúdo do Currículo -->
+    <div class="container">
+        <h1>O Seu Nome</h1>
+        <div class="info">Email: seuemail@email.com | Telemóvel: +351 900 000 000</div>
+        
+        <div class="section">
+            <h2>Resumo Profissional</h2>
+            <p>Profissional focado no desenvolvimento de soluções criativas, aplicações portáteis e automação ágil.</p>
+        </div>
+
+        <div class="section">
+            <h2>Experiência Profissional</h2>
+            <p><strong>Desenvolvedor Web Independente</strong> - Freelancer (2025 - Presente)<br>Criação de portfólios autónomos e arquiteturas web leves.</p>
+        </div>
+    </div>
+
+    <!-- Scripts de Automação de Exportação -->
+    <script>
+        // 1) LÓGICA DO PC: Gera dinamicamente o ficheiro "gerar_exe.bat"
+        function descarregarGeradorWindows() {
+            const codigoBat = `@echo off\r\n` +
+                `title Gerador de Executavel CV\r\n` +
+                `echo Criando configuracao do instalador nativo...\r\n` +
+                `(\r\n` +
+                `echo [Version]\r\n` +
+                `echo Class=IEXPRESS\r\n` +
+                `echo SEDVersion=3\r\n` +
+                `echo [Options]\r\n` +
+                `echo PackagePurpose=InstallApp\r\n` +
+                `echo ShowInstallProgramWindow=0\r\n` +
+                `echo HideExtractAnimation=1\r\n` +
+                `echo UseLongFileName=1\r\n` +
+                `echo InsideCompressed=0\r\n` +
+                `echo CabinetsCount=1\r\n` +
+                `echo ReturnCodeType=0\r\n` +
+                `echo PostInstallCmd=<None>\r\n` +
+                `echo AdminQuietInstCmd=<None>\r\n` +
+                `echo UserQuietInstCmd=<None>\r\n` +
+                `echo SourceFiles=SourceFiles\r\n` +
+                `echo TargetName=%~dp0CurriculumVitae.exe\r\n` +
+                `echo AppLaunched=cmd /c start index.html\r\n` +
+                `[SourceFiles]\r\n` +
+                `echo SourceFiles0=%~dp0\r\n` +
+                `[SourceFiles0]\r\n` +
+                `echo %%FILE0%%=\r\n` +
+                `) > "%temp%\\config_cv.sed"\r\n` +
+                `powershell -Command "(gc '%temp%\\config_cv.sed') -replace '%%FILE0%%=', 'FILE0=\\"index.html\\"' | Out-File -encoding ASCII '%temp%\\config_cv.sed'"\r\n` +
+                `echo Compilando para EXE nativo do Windows...\r\n` +
+                `iexpress /n /q "%temp%\\config_cv.sed"\r\n` +
+                `del "%temp%\\config_cv.sed"\r\n` +
+                `echo [SUCESSO] O seu executavel 'CurriculumVitae.exe' foi criado na mesma pasta!\r\n` +
+                `pause`;
+
+            const blob = new Blob([codigoBat], { type: 'text/plain;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'gerar_exe.bat';
+            link.click();
+        }
+
+        // 2) LÓGICA DO ANDROID: Executa a instalação direta na tela inicial (Substitui o APK clássico)
+        let eventoInstalacao;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            eventoInstalacao = e;
+        });
+
+        function instalarNoAndroid() {
+            if (eventoInstalacao) {
+                eventoInstalacao.prompt();
+                eventoInstalacao.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        alert('Currículo adicionado com sucesso ao seu ecrã inicial do telemóvel!');
+                    }
+                });
+            } else {
+                alert('Para instalar no Android:\n1. Abra este ficheiro no navegador do telemóvel (ex: Chrome).\n2. Clique nos 3 pontinhos no canto superior direito.\n3. Selecione "Adicionar ao ecrã principal" ou "Instalar aplicação".');
+            }
+        }
+
+        // Registo automático de um Service Worker simulado para ativar capacidades nativas móveis
+        if ('serviceWorker' in navigator) {
+            const swCode = "self.addEventListener('fetch', function(e) {});";
+            const blob = new Blob([swCode], {type: 'application/javascript'});
+            navigator.serviceWorker.register(URL.createObjectURL(blob));
+        }
+    </script>
+</body>
+</html>
