@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curriculum Vitae Autónomo</title>
+    <title>Curriculum Vitae Autónomo - TGEI</title>
     
-    <!-- Configuração PWA direta para Android (Elimina a necessidade de APIs/Android Studio) -->
+    <!-- Configuração PWA direta para Android -->
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJkZWZhdWx0X2xvY2FsZSI6ICJwdCIsCiAgIm5hbWUiOiAiQ3VycmljdWx1bSBWaXRhZSIsCiAgInNob3J0X25hbWUiOiAiQ1YiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2Y0ZjRmOSIsCiAgInRoZW1lX2NvbG9yI6ICIjMTZhMDg1Igp9">
     
     <style>
@@ -13,7 +13,10 @@
         .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         h1 { color: #2c3e50; margin-bottom: 5px; }
         h2 { color: #16a085; border-bottom: 2px solid #ecf0f1; padding-bottom: 5px; margin-top: 30px; }
-        .info { margin-bottom: 20px; font-style: italic; }
+        .info { margin-bottom: 20px; font-style: italic; color: #555; }
+        .section p { margin: 10px 0; text-align: justify; }
+        .skills-list { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; list-style: none; }
+        .skills-list li { background: #e8f8f5; color: #16a085; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 14px; }
         
         /* Painel de Exportação Superior */
         .export-panel { background: #2c3e50; padding: 15px; border-radius: 6px; margin-bottom: 25px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
@@ -21,6 +24,8 @@
         .btn:hover { background: #148f77; }
         .btn-orange { background: #e67e22; }
         .btn-orange:hover { background: #d35400; }
+        .btn-purple { background: #8e44ad; }
+        .btn-purple:hover { background: #7d3c98; }
     </style>
 </head>
 <body>
@@ -28,22 +33,57 @@
     <!-- Painel de Download Embutido -->
     <div class="export-panel">
         <button class="btn" onclick="descarregarGeradorWindows()">1) Download Script .BAT (Gerar .EXE para PC)</button>
-        <button class="btn btn-orange" onclick="instalarNoAndroid()">2) Instalar no Android (Sem APK/API)</button>
+        <button class="btn btn-orange" onclick="instalarNoAndroid()">2) Instalar via PWA (Sem APK)</button>
+        <button class="btn btn-purple" onclick="explicarMaquinaAPK()">3) HTML como Máquina APK (Instruções)</button>
     </div>
 
     <!-- Conteúdo do Currículo -->
     <div class="container">
         <h1>O Seu Nome</h1>
-        <div class="info">Email: sum8708311@gmail.com | Telemóvel: +351 928037083 </div>
+        <div class="info">
+            <strong>Email:</strong> sum8708311@gmail.com | 
+            <strong>Telemóvel:</strong> +351 928037083 | 
+            <strong>Curso:</strong> TGEI (ETPR)
+        </div>
         
         <div class="section">
             <h2>Resumo Profissional</h2>
-            <p>Profissional focado no desenvolvimento de soluções criativas, aplicações portáteis e automação ágil.</p>
+            <p>Estudante de Informática na <strong>ETPR (Escola Técnica e Profissional do Ribatejo)</strong> no curso de <strong>TGEI (Técnico de Gestão de Equipamentos Informáticos)</strong>. Focado no desenvolvimento de soluções portáteis, automação ágil de sistemas e arquiteturas de software leves. Especialista em criar ferramentas autónomas (HTML, scripts e executáveis) que funcionam sem dependências externas pesadas.</p>
         </div>
 
         <div class="section">
-            <h2>Experiência Profissional</h2>
-            <p><strong>Desenvolvedor Web Independente</strong> - Freelancer (2025 - Presente)<br>Criação de portfólios autónomos e arquiteturas web leves.</p>
+            <h2>Experiência & Projetos Autónomos</h2>
+            <p>
+                <strong>Desenvolvedor de Soluções Portáteis & Automação</strong> - Freelancer <br>
+                <em>2025 - Presente</em>
+                <br>• Construção de portfólios digitais e aplicações web autónomas compactas (Single HTML).
+                <br>• Desenvolvimento de scripts de automação em comandos batch (.BAT) para compilação nativa em Windows (IExpress).
+                <br>• Criação e planeamento de empacotamento híbrido (Transformação de código HTML puro em aplicações nativas Android .APK utilizando containers WebView offline).
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Educação e Formação</h2>
+            <p>
+                <strong>Curso Profissional de Técnico de Gestão de Equipamentos Informáticos (TGEI)</strong><br>
+                <a href="https://etpr.pt/" target="_blank" style="color: #16a085; font-weight: bold; text-decoration: none;">ETPR - Escola Técnica e Profissional do Ribatejo</a><br>
+                Formação especializada de Nível 4 do QNQ dedicada a:
+                <br>• Montagem, manutenção, diagnóstico e reparação de hardware e sistemas informáticos.
+                <br>• Instalação, configuração e administração de redes informáticas locais e servidores.
+                <br>• Planeamento e desenvolvimento de scripts utilitários e páginas interativas para a Internet.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Competências Técnicas (Stack Leve)</h2>
+            <ul class="skills-list">
+                <li>Gestão de Equipamentos & Hardware Informático</li>
+                <li>Administração de Redes & Sistemas Operativos</li>
+                <li>Desenvolvimento Web Nativo (HTML5, CSS3, JavaScript)</li>
+                <li>Automação & Scripting (BAT, Windows Shell)</li>
+                <li>Arquitetura WebView Híbrida (HTML para APK)</li>
+                <li>Progressive Web Apps (PWA) de Instalação Direta</li>
+            </ul>
         </div>
     </div>
 
@@ -91,7 +131,7 @@
             link.click();
         }
 
-        // 2) LÓGICA DO ANDROID: Executa a instalação direta na tela inicial (Substitui o APK clássico)
+        // 2) LÓGICA DO ANDROID: Executa a instalação direta na tela inicial (PWA)
         let eventoInstalacao;
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
@@ -107,8 +147,20 @@
                     }
                 });
             } else {
-                alert('Para instalar no Android:\n1. Abra este ficheiro no navegador do telemóvel (ex: Chrome).\n2. Clique nos 3 pontinhos no canto superior direito.\n3. Selecione "Adicionar ao ecrã principal" ou "Instalar aplicação".');
+                alert('Para instalar via PWA no Android:\n1. Abra este ficheiro no navegador do telemóvel (ex: Chrome).\n2. Clique nos 3 pontinhos no canto superior direito.\n3. Selecione "Adicionar ao ecrã principal" ou "Instalar aplicação".');
             }
+        }
+
+        // 3) LÓGICA MÁQUINA APK: Explica passo a passo como o código gera a janela nativa APK
+        function explicarMaquinaAPK() {
+            alert(
+                "MÁQUINA HTML PARA APK (Conceito TGEI):\n\n" +
+                "Este ficheiro HTML foi desenhado para atuar como a base de uma aplicação nativa Android.\n\n" +
+                "Como funciona o empacotamento em APK?\n" +
+                "1. O código HTML, CSS e JS é encapsulado dentro de um container nativo chamado WebView.\n" +
+                "2. Ao gerar o APK (usando ferramentas de wrapping como WebInto.app, Apache Cordova ou Android Studio), o Android cria uma janela de aplicação independente que roda este ficheiro offline.\n" +
+                "3. A aplicação abre diretamente como um programa do telemóvel, ocultando a barra de endereços do navegador e funcionando como um software instalado nativamente!"
+            );
         }
 
         // Registo automático de um Service Worker simulado para ativar capacidades nativas móveis
@@ -120,3 +172,4 @@
     </script>
 </body>
 </html>
+
