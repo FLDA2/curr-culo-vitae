@@ -6,7 +6,7 @@
     <title>Curriculum Vitae Autónomo - TGEI</title>
     
     <!-- Configuração PWA direta para Android -->
-    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJkZWZhdWx0X2xvY2FsZSI6ICJwdCIsCiAgIm5hbWUiOiAiQ3VycmljdWx1bSBWaXRhZSIsCiAgInNob3J0X25hbWUiOiAiQ1YiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2Y0ZjRmOSIsCiAgInRoZW1lX2NvbG9yI6ICIjMTZhMDg1Igp9">
+    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJkZWZhdWx0X2xvY2FsZSI6ICJwdCIsCiAgIm5hbWUiOiAiQ3VycmljdWx1bSBWaXRhZSIsCiAgInNob3J0X25hbWUiOiAiQ1YiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRelvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yI6ICIjZjRmNGY5IiwKICAidGhlbWVfY29sb3IiOiAiIzE2YTA4NSIKfQ==">
     
     <style>
         body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; color: #333; background: #f4f4f9; }
@@ -32,7 +32,7 @@
 
     <!-- Painel de Download Embutido -->
     <div class="export-panel">
-        <button class="btn" onclick="descarregarGeradorWindows()">1) Download Script .BAT (Gerar .EXE para PC)</button>
+        <button class="btn" onclick="descarregarGeradorWindows()">1) Download Script .BAT (Descarregar .EXE)</button>
         <button class="btn btn-orange" onclick="instalarNoAndroid()">2) Instalar via PWA (Sem APK)</button>
         <button class="btn btn-purple" onclick="explicarMaquinaAPK()">3) HTML como Máquina APK (Instruções)</button>
     </div>
@@ -57,7 +57,7 @@
                 <strong>Desenvolvedor de Soluções Portáteis & Automação</strong> - Freelancer <br>
                 <em>2025 - Presente</em>
                 <br>• Construção de portfólios digitais e aplicações web autónomas compactas (Single HTML).
-                <br>• Desenvolvimento de scripts de automação em comandos batch (.BAT) para compilação nativa em Windows (IExpress).
+                <br>• Desenvolvimento de scripts de automação automatizados (.BAT) com integração PowerShell para transferência direta de executáveis.
                 <br>• Criação e planeamento de empacotamento híbrido (Transformação de código HTML puro em aplicações nativas Android .APK utilizando containers WebView offline).
             </p>
         </div>
@@ -66,7 +66,7 @@
             <h2>Educação e Formação</h2>
             <p>
                 <strong>Curso Profissional de Técnico de Gestão de Equipamentos Informáticos (TGEI)</strong><br>
-                <a href="https://etpr.pt/" target="_blank" style="color: #16a085; font-weight: bold; text-decoration: none;">ETPR - Escola Técnica e Profissional do Ribatejo</a><br>
+                <a href="https://etpr.pt" target="_blank" style="color: #16a085; font-weight: bold; text-decoration: none;">ETPR - Escola Técnica e Profissional do Ribatejo</a><br>
                 Formação especializada de Nível 4 do QNQ dedicada a:
                 <br>• Montagem, manutenção, diagnóstico e reparação de hardware e sistemas informáticos.
                 <br>• Instalação, configuração e administração de redes informáticas locais e servidores.
@@ -80,7 +80,7 @@
                 <li>Gestão de Equipamentos & Hardware Informático</li>
                 <li>Administração de Redes & Sistemas Operativos</li>
                 <li>Desenvolvimento Web Nativo (HTML5, CSS3, JavaScript)</li>
-                <li>Automação & Scripting (BAT, Windows Shell)</li>
+                <li>Automação & Scripting (BAT, Windows Shell, PowerShell)</li>
                 <li>Arquitetura WebView Híbrida (HTML para APK)</li>
                 <li>Progressive Web Apps (PWA) de Instalação Direta</li>
             </ul>
@@ -89,45 +89,39 @@
 
     <!-- Scripts de Automação de Exportação -->
     <script>
-        // 1) LÓGICA DO PC: Gera dinamicamente o ficheiro "gerar_exe.bat"
+        // Configuração do URL do teu executável para o download direto
+        const URL_DO_EXE_REAL = "https://exemplo.com";
+
+        // 1) LÓGICA DO PC: Gera dinamicamente o ficheiro .BAT modificado para fazer download direto
         function descarregarGeradorWindows() {
             const codigoBat = `@echo off\r\n` +
-                `title Gerador de Executavel CV\r\n` +
-                `echo Criando configuracao do instalador nativo...\r\n` +
-                `(\r\n` +
-                `echo [Version]\r\n` +
-                `echo Class=IEXPRESS\r\n` +
-                `echo SEDVersion=3\r\n` +
-                `echo [Options]\r\n` +
-                `echo PackagePurpose=InstallApp\r\n` +
-                `echo ShowInstallProgramWindow=0\r\n` +
-                `echo HideExtractAnimation=1\r\n` +
-                `echo UseLongFileName=1\r\n` +
-                `echo InsideCompressed=0\r\n` +
-                `echo CabinetsCount=1\r\n` +
-                `echo ReturnCodeType=0\r\n` +
-                `echo PostInstallCmd=<None>\r\n` +
-                `echo AdminQuietInstCmd=<None>\r\n` +
-                `echo UserQuietInstCmd=<None>\r\n` +
-                `echo SourceFiles=SourceFiles\r\n` +
-                `echo TargetName=%~dp0CurriculumVitae.exe\r\n` +
-                `echo AppLaunched=cmd /c start index.html\r\n` +
-                `[SourceFiles]\r\n` +
-                `echo SourceFiles0=%~dp0\r\n` +
-                `[SourceFiles0]\r\n` +
-                `echo %%FILE0%%=\r\n` +
-                `) > "%temp%\\config_cv.sed"\r\n` +
-                `powershell -Command "(gc '%temp%\\config_cv.sed') -replace '%%FILE0%%=', 'FILE0=\\"index.html\\"' | Out-File -encoding ASCII '%temp%\\config_cv.sed'"\r\n` +
-                `echo Compilando para EXE nativo do Windows...\r\n` +
-                `iexpress /n /q "%temp%\\config_cv.sed"\r\n` +
-                `del "%temp%\\config_cv.sed"\r\n` +
-                `echo [SUCESSO] O seu executavel 'CurriculumVitae.exe' foi criado na mesma pasta!\r\n` +
+                `title Descarregar Executavel CV\r\n` +
+                `color 0A\r\n\r\n` +
+                `echo ===================================================\r\n` +
+                `echo   DESCARREGANDO O EXECUTAVEL DO CURRICULO (TGEI)\r\n` +
+                `echo ===================================================\r\n` +
+                `echo.\r\n\r\n` +
+                `set "URL_DO_EXE=${URL_DO_EXE_REAL}"\r\n` +
+                `set "NOME_DO_ARQUIVO=CurriculumVitae.exe"\r\n\r\n` +
+                `echo A iniciar o download direto via PowerShell...\r\n` +
+                `powershell -Command "(New-Object Net.WebClient).DownloadFile('%URL_DO_EXE%', '%~dp0%NOME_DO_ARQUIVO%')"\r\n\r\n` +
+                `if exist "%~dp0%NOME_DO_ARQUIVO%" (\r\n` +
+                `    echo.\r\n` +
+                `    echo [SUCESSO] O seu executavel '%NOME_DO_ARQUIVO%' foi descarregado com sucesso na mesma pasta!\r\n` +
+                `    echo A abrir o ficheiro...\r\n` +
+                `    start "" "%~dp0%NOME_DO_ARQUIVO%"\r\n` +
+                `) else (\r\n` +
+                `    echo.\r\n` +
+                `    echo [ERRO] Nao foi possivel descarregar o ficheiro.\r\n` +
+                `    echo Verifique a ligacao a Internet ou o URL configurado.\r\n` +
+                `)\r\n\r\n` +
+                `echo.\r\n` +
                 `pause`;
 
             const blob = new Blob([codigoBat], { type: 'text/plain;charset=utf-8' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'gerar_exe.bat';
+            link.download = 'descarregar_exe.bat';
             link.click();
         }
 
@@ -172,4 +166,3 @@
     </script>
 </body>
 </html>
-
